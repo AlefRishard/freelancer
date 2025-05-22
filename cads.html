@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escolha de Cadastro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+    <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full text-center">
+        <h2 class="text-3xl font-bold text-gray-800 mb-6">Escolha o Tipo de Cadastro</h2>
+        <p class="text-gray-600 mb-8">Por favor, selecione se você é um cliente ou um profissional para prosseguir com o cadastro.</p>
+
+        <div class="space-y-4">
+            <button id="clientRegisterBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-md shadow-md transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75">
+                <a href="cliente.html">Cadastrar como Cliente</a>
+            </button>
+
+            <button id="professionalRegisterBtn" class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-md shadow-md transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-75">
+                <a href="prof.html">Cadastrar como Profissional,</a>
+            </button>
+        </div>
+
+        <div id="message" class="message mt-8 p-4 rounded-md hidden"></div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</body>
+</html>

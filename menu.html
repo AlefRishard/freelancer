@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plataforma Freelancers</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .dropdown-menu {
+      display: none;
+    }
+    .dropdown-menu.show {
+      display: block;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 font-sans">
+  <!-- Cabeçalho com logo e menu -->
+  <header class="bg-blue-600 text-white p-4 flex justify-between items-center">
+    <div class="flex items-center">
+  <img src="./img/unnamed.png" alt="Logo Freelancers" class="h-10 mr-2">
+  <h1 class="text-2xl font-bold">Freelancers</h1>
+</div>
+    <div class="relative">
+      <button id="menuButton" class="focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+      </button>
+      <div id="dropdownMenu" class="dropdown-menu absolute right-0 mt-2 w-48 bg-white text-black rounded-md shadow-lg z-10">
+        <a href="#" class="block px-4 py-2 hover:bg-gray-200">Sair</a>
+        <a href="#" class="block px-4 py-2 hover:bg-gray-200">Configuração</a>
+        <a href="#" class="block px-4 py-2 hover:bg-gray-200">Perfil</a>
+        <a href="#" class="block px-4 py-2 hover:bg-gray-200">Alterar Cor</a>
+        <a href="#" class="block px-4 py-2 hover:bg-gray-200">Conversas</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Seção principal com blocos de profissões -->
+  <main class="container mx-auto p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- Bloco Pedreiro -->
+    <a href="#" class="block bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+      <img src="https://webreforma.com.br/wp-content/uploads/elementor/thumbs/pedreiro-em-teresina-pi-qw2p8a3uctjggjhox3klw4k1r3u3tuq2bqguwnrdsw.webp" alt="Pedreiro" class="w-full h-48 object-cover">
+      <div class="p-4">
+        <h2 class="text-xl font-semibold">Pedreiro</h2>
+      </div>
+    </a>
+    <!-- Bloco Faxineira -->
+    <a href="#" class="block bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+      <img src="https://atmosferaservicos.com.br/wp-content/uploads/2022/08/faxineira-3.png" alt="Faxineira" class="w-full h-48 object-cover">
+      <div class="p-4">
+        <h2 class="text-xl font-semibold">Faxineira</h2>
+      </div>
+    </a>
+    <!-- Bloco Eletricista -->
+    <a href="#" class="block bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+      <img src="https://escolaprofissional.com.br/wp-content/uploads/2024/01/eletricista-industrial-1-1024x683.jpg" alt="Eletricista" class="w-full h-48 object-cover">
+      <div class="p-4">
+        <h2 class="text-xl font-semibold">Eletricista</h2>
+      </div>
+    </a>
+    <!-- Bloco Encanador -->
+    <a href="#" class="block bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+      <img src="https://www.prestadoresdobrasil.com.br/Servicos/imagens_categorias_prestadores/Encanadores.jpg" alt="Encanador" class="w-full h-48 object-cover">
+      <div class="p-4">
+        <h2 class="text-xl font-semibold">Encanador</h2>
+      </div>
+    </a>
+    <!-- Bloco Técnico de Refrigeração -->
+    <a href="#" class="block bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+      <img src="https://www.formabrasil.com.br/uploads/images/bra_cursos/redimencionar-730-500-tecnico-em-refrigeracao-e-climatizacao_1.jpg" alt="Técnico de Refrigeração" class="w-full h-48 object-cover">
+      <div class="p-4">
+        <h2 class="text-xl font-semibold">Técnico de Refrigeração</h2>
+      </div>
+    </a>
+  </main>
+
+  <script>
+    // Script para toggle do menu dropdown
+    const menuButton = document.getElementById('menuButton');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+
+    menuButton.addEventListener('click', () => {
+      dropdownMenu.classList.toggle('show');
+    });
+
+    // Fechar o menu se clicar fora
+    document.addEventListener('click', (event) => {
+      if (!menuButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+        dropdownMenu.classList.remove('show');
+      }
+    });
+  </script>
+</body>
+</html>
