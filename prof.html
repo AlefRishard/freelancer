@@ -8,22 +8,70 @@
     <style>
         /* Estilos para o label-field */
         .label-field {
-            @apply block text-left text-gray-700 text-sm font-bold mb-2;
+            display: block;
+            text-align: left;
+            color: #374151; /* text-gray-700 */
+            font-size: 0.875rem; /* text-sm */
+        }
+        .input-field {
+            width: 100%;
+            padding: 0.75rem; /* p-3 */
+            border: 1px solid #d1d5db; /* border-gray-300 */
+            border-radius: 0.375rem; /* rounded-md */
+        }
+        .btn-primary {
+            background-color: #22c55e; /* bg-green-500 */
+            color: #fff;
+            padding: 0.75rem; /* p-3 */
+            border-radius: 0.375rem; /* rounded-md */
+        }
+        .btn-secondary {
+            background-color: #2563eb; /* bg-blue-600 */
+            color: #fff;
+            padding: 0.75rem; /* p-3 */
+            border-radius: 0.375rem; /* rounded-md */
+            transition: background-color 0.3s ease-in-out;
+        }
+        .btn-secondary:hover {
+            background-color: #1d4ed8; /* bg-blue-700 */
         }
 
         /* Estilos para o input-field */
         .input-field {
-            @apply w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500;
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            outline: none;
+            transition: box-shadow 0.2s, border-color 0.2s;
+        }
+        .input-field:focus {
+            box-shadow: 0 0 0 2px #3b82f6;
+            border-color: #3b82f6;
         }
 
         /* Estilos para o btn-primary (Cadastrar) - VERDE */
         .btn-primary {
-            @apply bg-green-500 text-white p-3 rounded-md hover:bg-green-600 transition duration-300 ease-in-out;
+            background-color: #22c55e;
+            color: #fff;
+            padding: 0.75rem;
+            border-radius: 0.375rem;
+            transition: background-color 0.3s ease-in-out;
+        }
+        .btn-primary:hover {
+            background-color: #16a34a;
         }
 
         /* Estilos para o btn-secondary (Voltar) - AZUL */
         .btn-secondary {
-            @apply bg-blue-600 text-white p-3 rounded-md hover:bg-blue-700 transition duration-300 ease-in-out;
+            background-color: #2563eb;
+            color: #fff;
+            padding: 0.75rem;
+            border-radius: 0.375rem;
+            transition: background-color 0.3s ease-in-out;
+        }
+        .btn-secondary:hover {
+            background-color: #1d4ed8;
         }
 
         /* Oculta o overlay do menu mobile por padrão */
@@ -73,7 +121,15 @@
 
         /* Estilos dos links dentro do menu mobile */
         #mobile-menu-overlay .nav-links-mobile a {
-            @apply text-white text-2xl py-4 hover:text-blue-400 transition-colors duration-200;
+            color: #fff;
+            font-size: 1.5rem; /* text-2xl */
+            padding-top: 1rem;  /* py-4 */
+            padding-bottom: 1rem;
+            transition-property: color;
+            transition-duration: 200ms;
+        }
+        #mobile-menu-overlay .nav-links-mobile a:hover {
+            color: #60a5fa; /* text-blue-400 */
         }
     </style>
 </head>
@@ -103,14 +159,7 @@
   </div>
 </header>
 
-<script>
-  const mobileMenuButton = document.getElementById('mobile-menu-button');
-  const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
-
-  mobileMenuButton.addEventListener('click', () => {
-    mobileMenuOverlay.classList.toggle('hidden');
-  });
-</script>
+<!-- Removed duplicate script block to prevent variable redeclaration -->
 
 
     <div id="mobile-menu-overlay" class="md:hidden">

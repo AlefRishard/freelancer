@@ -8,22 +8,50 @@
     <style>
         /* Estilos para o label-field */
         .label-field {
-            @apply block text-left text-gray-700 text-sm font-bold mb-2;
+            display: block;
+            text-align: left;
+            color: #374151; /* text-gray-700 */
+            font-size: 0.875rem; /* text-sm */
+            font-weight: bold;
+            margin-bottom: 0.5rem; /* mb-2 */
         }
 
         /* Estilos para o input-field */
         .input-field {
-            @apply w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500;
+            width: 100%;
+            padding: 0.75rem; /* p-3 */
+            border: 1px solid #d1d5db; /* border-gray-300 */
+            border-radius: 0.375rem; /* rounded-md */
+            outline: none;
+            transition: box-shadow 0.2s, border-color 0.2s;
+        }
+        .input-field:focus {
+            box-shadow: 0 0 0 2px #3b82f6; /* focus:ring-2 focus:ring-blue-500 */
+            border-color: #3b82f6;
         }
 
         /* Estilos para o btn-primary (Cadastrar) - VERDE */
         .btn-primary {
-            @apply bg-green-500 text-white p-3 rounded-md hover:bg-green-600 transition duration-300 ease-in-out;
+            background-color: #22c55e; /* bg-green-500 */
+            color: #fff;
+            padding: 0.75rem;
+            border-radius: 0.375rem;
+            transition: background-color 0.3s ease-in-out;
+        }
+        .btn-primary:hover {
+            background-color: #16a34a; /* hover:bg-green-600 */
         }
 
         /* Estilos para o btn-secondary (Voltar) - AZUL */
         .btn-secondary {
-            @apply bg-blue-600 text-white p-3 rounded-md hover:bg-blue-700 transition duration-300 ease-in-out;
+            background-color: #2563eb; /* bg-blue-600 */
+            color: #fff;
+            padding: 0.75rem;
+            border-radius: 0.375rem;
+            transition: background-color 0.3s ease-in-out;
+        }
+        .btn-secondary:hover {
+            background-color: #1d4ed8; /* hover:bg-blue-700 */
         }
 
         /* Oculta o overlay do menu mobile por padrão */
@@ -43,10 +71,18 @@
             background-color: rgba(0, 0, 0, 0.9); /* Fundo escuro semi-transparente */
             z-index: 1000; /* Garante que fique acima de todo o conteúdo */
             justify-content: center;
-            align-items: center;
-            animation: slideIn 0.3s forwards; /* Animação para entrada */
         }
-
+        /* Estilos dos links dentro do menu mobile */
+        #mobile-menu-overlay .nav-links-mobile a {
+            color: #fff;
+            font-size: 1.5rem; /* text-2xl */
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            transition: color 0.2s;
+        }
+        #mobile-menu-overlay .nav-links-mobile a:hover {
+            color: #60a5fa; /* hover:text-blue-400 */
+        }
         /* Animação de entrada do menu mobile */
         @keyframes slideIn {
             from {
@@ -73,7 +109,14 @@
 
         /* Estilos dos links dentro do menu mobile */
         #mobile-menu-overlay .nav-links-mobile a {
-            @apply text-white text-2xl py-4 hover:text-blue-400 transition-colors duration-200;
+            color: #fff;
+            font-size: 1.5rem; /* text-2xl */
+            padding-top: 1rem;  /* py-4 */
+            padding-bottom: 1rem;
+            transition: color 0.2s;
+        }
+        #mobile-menu-overlay .nav-links-mobile a:hover {
+            color: #60a5fa; /* hover:text-blue-400 */
         }
     </style>
 </head>
@@ -99,28 +142,14 @@
 
   <!-- Menu Mobile -->
   <div id="mobile-menu-overlay" class="md:hidden hidden flex-col items-center bg-gray-900 w-full">
+    <button id="close-mobile-menu" class="absolute top-4 right-4 text-white text-3xl focus:outline-none" aria-label="Fechar menu">
+      &times;
+    </button>
     <a href="index.html" class="btn-secondary my-2">Login</a>
   </div>
 </header>
 
-<script>
-  const mobileMenuButton = document.getElementById('mobile-menu-button');
-  const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
-
-  mobileMenuButton.addEventListener('click', () => {
-    mobileMenuOverlay.classList.toggle('hidden');
-  });
-</script>
-
-
-    <div id="mobile-menu-overlay" class="md:hidden">
-        <button id="close-mobile-menu" class="absolute top-4 right-4 text-white text-4xl focus:outline-none">
-            &times;
-        </button>
-        <nav class="nav-links-mobile flex flex-col items-center">
-            <a href="index.html" class="btn-secondary my-2">Login</a>
-        </nav>
-    </div>
+<!-- Removed duplicate script block to prevent variable redeclaration error -->
 
     <main class="flex-grow flex items-center justify-center p-4">
         <div class="bg-white p-8 rounded-lg shadow-xl w-full max-w-lg">
