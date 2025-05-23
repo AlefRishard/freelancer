@@ -3,77 +3,227 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Profissional</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Cadastro de Profissional - Freelancers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Estilos para o label-field */
+        .label-field {
+            @apply block text-left text-gray-700 text-sm font-bold mb-2;
+        }
+
+        /* Estilos para o input-field */
+        .input-field {
+            @apply w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500;
+        }
+
+        /* Estilos para o btn-primary (Cadastrar) - VERDE */
+        .btn-primary {
+            @apply bg-green-500 text-white p-3 rounded-md hover:bg-green-600 transition duration-300 ease-in-out;
+        }
+
+        /* Estilos para o btn-secondary (Voltar) - AZUL */
+        .btn-secondary {
+            @apply bg-blue-600 text-white p-3 rounded-md hover:bg-blue-700 transition duration-300 ease-in-out;
+        }
+
+        /* Oculta o overlay do menu mobile por padrão */
+        #mobile-menu-overlay {
+            display: none;
+        }
+
+        /* Exibe o overlay do menu mobile quando a classe 'open' é adicionada */
+        #mobile-menu-overlay.open {
+            display: flex;
+            flex-direction: column;
+            position: fixed; /* Garante que o menu cubra a tela toda */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9); /* Fundo escuro semi-transparente */
+            z-index: 1000; /* Garante que fique acima de todo o conteúdo */
+            justify-content: center;
+            align-items: center;
+            animation: slideIn 0.3s forwards; /* Animação para entrada */
+        }
+
+        /* Animação de entrada do menu mobile */
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%); /* Começa fora da tela à direita */
+            }
+            to {
+                transform: translateX(0); /* Desliza para a posição normal */
+            }
+        }
+
+        /* Animação de saída do menu mobile */
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(100%);
+            }
+        }
+
+        #mobile-menu-overlay.closing {
+            animation: slideOut 0.3s forwards;
+        }
+
+        /* Estilos dos links dentro do menu mobile */
+        #mobile-menu-overlay .nav-links-mobile a {
+            @apply text-white text-2xl py-4 hover:text-blue-400 transition-colors duration-200;
+        }
+    </style>
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
-    <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
-        <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Cadastro de Profissional</h2>
-        <p class="text-gray-600 mb-8 text-center">Preencha os campos abaixo para criar sua conta de profissional.</p>
+<body class="font-sans bg-gray-100 flex flex-col min-h-screen">
+   <header class="bg-gray-900 text-white p-4 shadow-md">
+  <div class="container mx-auto flex justify-between items-center">
+    <h1 class="text-2xl sm:text-3xl font-bold uppercase">Freelancers</h1>
 
-        <form id="professionalRegistrationForm" class="space-y-4">
-            <div>
-                <label for="fullName" class="block text-gray-700 text-sm font-bold mb-2">Nome Completo:</label>
-                <input type="text" id="fullName" name="fullName" placeholder="Seu nome completo"
-                       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
-            </div>
+    <!-- Menu Desktop -->
+    <nav class="hidden md:flex space-x-4 items-center">
+      <a href="index.html" class="btn-secondary">Login</a>
+    </nav>
 
-            <div>
-                <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
-                <input type="email" id="email" name="email" placeholder="seu.email@exemplo.com"
-                       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
-            </div>
+    <!-- Botão Menu Mobile -->
+    <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+           xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+  </div>
 
-            <div>
-                <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Senha:</label>
-                <input type="password" id="password" name="password" placeholder="Sua senha"
-                       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" required>
-            </div>
+  <!-- Menu Mobile -->
+  <div id="mobile-menu-overlay" class="md:hidden hidden flex-col items-center bg-gray-900 w-full">
+    <a href="index.html" class="btn-secondary my-2">Login</a>
+  </div>
+</header>
 
-            <div>
-                <label for="confirmPassword" class="block text-gray-700 text-sm font-bold mb-2">Confirmar Senha:</label>
-                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirme sua senha"
-                       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" required>
-            </div>
+<script>
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
 
-            <div>
-                <label for="phone" class="block text-gray-700 text-sm font-bold mb-2">Telefone:</label>
-                <input type="tel" id="phone" name="phone" placeholder="(XX) XXXXX-XXXX"
-                       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-            </div>
+  mobileMenuButton.addEventListener('click', () => {
+    mobileMenuOverlay.classList.toggle('hidden');
+  });
+</script>
 
-            <div>
-                <label for="profession" class="block text-gray-700 text-sm font-bold mb-2">Profissão:</label>
-                <input type="text" id="profession" name="profession" placeholder="Ex: Eletricista, Designer, etc."
-                       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
-            </div>
 
-            <div>
-                <label for="serviceDescription" class="block text-gray-700 text-sm font-bold mb-2">Descrição dos Serviços:</label>
-                <textarea id="serviceDescription" name="serviceDescription" rows="4" placeholder="Descreva os serviços que você oferece..."
-                          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required></textarea>
-            </div>
-
-            <div>
-                <label for="certificationFile" class="block text-gray-700 text-sm font-bold mb-2">Certificado (opcional):</label>
-                <input type="file" id="certificationFile" name="certificationFile" accept=".pdf,.doc,.docx,.jpg,.png"
-                       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                <p class="text-xs text-gray-500 mt-1">Envie seu certificado em formato PDF, DOC, DOCX, JPG ou PNG.</p>
-            </div>
-
-            <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-md shadow-md transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-75 mt-6">
-                Cadastrar Profissional
-            </button>
-
-            <button type="button" id="backButton" class="w-full bg-gray-400 hover:bg-gray-500 text-white font-semibold py-3 px-6 rounded-md shadow-md transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-opacity-75 mt-2">
-                Voltar
-            </button>
-        </form>
-
-        <div id="message" class="message mt-8 p-4 rounded-md hidden"></div>
+    <div id="mobile-menu-overlay" class="md:hidden">
+        <button id="close-mobile-menu" class="absolute top-4 right-4 text-white text-4xl focus:outline-none">
+            &times;
+        </button>
+        <nav class="nav-links-mobile flex flex-col items-center">
+            <a href="index.html" class="btn-secondary my-2">Login</a>
+            
+        </nav>
     </div>
 
-    <script src="professional-registration.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <main class="flex-grow flex items-center justify-center p-4">
+        <div class="bg-white p-8 rounded-lg shadow-xl w-full max-w-lg">
+            <h2 class="text-4xl font-bold text-gray-800 mb-6 text-center">Cadastro de Profissional</h2>
+            <p class="text-gray-600 mb-8 text-center">Preencha os campos abaixo para oferecer seus serviços.</p>
+
+            <form id="professionalRegistrationForm" class="space-y-6">
+                <div>
+                    <label for="profFullName" class="label-field">Nome Completo:</label>
+                    <input type="text" id="profFullName" name="fullName" placeholder="Seu nome completo"
+                           class="input-field" required>
+                </div>
+                <div>
+                    <label for="profEmail" class="label-field">Email:</label>
+                    <input type="email" id="profEmail" name="email" placeholder="seu.email@exemplo.com"
+                           class="input-field" required>
+                </div>
+                <div>
+                    <label for="profPassword" class="label-field">Senha:</label>
+                    <input type="password" id="profPassword" name="password" placeholder="Sua senha"
+                           class="input-field" required>
+                </div>
+                <div>
+                    <label for="profConfirmPassword" class="label-field">Confirmar Senha:</label>
+                    <input type="password" id="profConfirmPassword" name="confirmPassword" placeholder="Confirme sua senha"
+                           class="input-field" required>
+                </div>
+                <div>
+                    <label for="profAddress" class="label-field">Endereço:</label>
+                    <input type="text" id="profAddress" name="address" placeholder="Rua, Número, Bairro, Cidade, Estado"
+                           class="input-field" required>
+                </div>
+                <div>
+                    <label for="profPhone" class="label-field">Telefone:</label>
+                    <input type="tel" id="profPhone" name="phone" placeholder="(XX) XXXXX-XXXX"
+                           class="input-field">
+                </div>
+                <div>
+                    <label for="profession" class="label-field">Profissão:</label>
+                    <select id="profession" name="profession" class="input-field" required>
+                        <option value="">Selecione sua profissão</option>
+                        <option value="pedreiro">Pedreiro</option>
+                        <option value="faxineira">Faxineira</option>
+                        <option value="tecnico-refrigeracao">Técnico de Refrigeração</option>
+                        <option value="encanador">Encanador</option>
+                        <option value="eletricista">Eletricista</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="experience" class="label-field">Experiência (anos):</label>
+                    <input type="number" id="experience" name="experience" placeholder="Ex: 5"
+                           class="input-field min-w-0" min="0">
+                </div>
+                <div>
+                    <label for="portfolio" class="label-field">Link do Portfólio (Opcional):</label>
+                    <input type="url" id="portfolio" name="portfolio" placeholder="Ex: www.meuportfolio.com"
+                           class="input-field">
+                </div>
+                <div>
+                    <label for="certificate" class="label-field">Certificado (PDF - Opcional):</label>
+                    <input type="file" id="certificate" name="certificate" accept=".pdf"
+                           class="input-field p-2 cursor-pointer">
+                    <p class="text-gray-500 text-xs mt-1 text-left">Envie seu certificado em formato PDF.</p>
+                </div>
+
+                <div class="flex flex-col sm:flex-row justify-between gap-4 mt-8">
+                    <button type="submit" class="bg-green-500 text-white p-3 rounded-md hover:bg-blue-600 transition duration-300 ease-in-out w-full text-center">Cadastrar</button>
+                    <a href="index.html" class="bg-blue-500 text-white p-3 rounded-md hover:bg-blue-600 transition duration-300 ease-in-out w-full text-center">Voltar</a>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-white p-4 text-center text-sm mt-8">
+        <div class="container mx-auto">&copy; 2025 Freelancers. Todos os direitos reservados.</div>
+    </footer>
+
+    <script>
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+        const closeMobileMenu = document.getElementById('close-mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenuOverlay.classList.add('open');
+        });
+
+        closeMobileMenu.addEventListener('click', () => {
+            mobileMenuOverlay.classList.add('closing');
+            mobileMenuOverlay.addEventListener('animationend', () => {
+                mobileMenuOverlay.classList.remove('open', 'closing');
+            }, { once: true });
+        });
+
+        // Fechar o menu ao clicar em um link
+        mobileMenuOverlay.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuOverlay.classList.add('closing');
+                mobileMenuOverlay.addEventListener('animationend', () => {
+                    mobileMenuOverlay.classList.remove('open', 'closing');
+                }, { once: true });
+            });
+        });
+    </script>
 </body>
 </html>

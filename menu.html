@@ -1,96 +1,73 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Plataforma Freelancers</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    .dropdown-menu {
-      display: none;
-    }
-    .dropdown-menu.show {
-      display: block;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Cliente - Freelancers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-gray-100 font-sans">
-  <!-- Cabeçalho com logo e menu -->
-  <header class="bg-blue-600 text-white p-4 flex justify-between items-center">
-    <div class="flex items-center">
-  <img src="./img/unnamed.png" alt="Logo Freelancers" class="h-10 mr-2">
-  <h1 class="text-2xl font-bold">Freelancers</h1>
-</div>
-    <div class="relative">
-      <button id="menuButton" class="focus:outline-none">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-        </svg>
-      </button>
-      <div id="dropdownMenu" class="dropdown-menu absolute right-0 mt-2 w-48 bg-white text-black rounded-md shadow-lg z-10">
-        <a href="#" class="block px-4 py-2 hover:bg-gray-200">Sair</a>
-        <a href="#" class="block px-4 py-2 hover:bg-gray-200">Configuração</a>
-        <a href="#" class="block px-4 py-2 hover:bg-gray-200">Perfil</a>
-        <a href="#" class="block px-4 py-2 hover:bg-gray-200">Alterar Cor</a>
-        <a href="#" class="block px-4 py-2 hover:bg-gray-200">Conversas</a>
-      </div>
-    </div>
-  </header>
+<body class="font-sans bg-gray-100 flex flex-col min-h-screen">
+    <header class="bg-gray-900 text-white p-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-3xl font-bold uppercase">Freelancers</h1>
+            <nav>
+                <a href="#" class="text-white hover:text-blue-400 mx-2">Minha Conta</a>
+                <a href="index.html" class="text-white hover:text-blue-400 mx-2">Sair</a>
+            </nav>
+        </div>
+    </header>
 
-  <!-- Seção principal com blocos de profissões -->
-  <main class="container mx-auto p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-    <!-- Bloco Pedreiro -->
-    <a href="#" class="block bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-      <img src="https://webreforma.com.br/wp-content/uploads/elementor/thumbs/pedreiro-em-teresina-pi-qw2p8a3uctjggjhox3klw4k1r3u3tuq2bqguwnrdsw.webp" alt="Pedreiro" class="w-full h-48 object-cover">
-      <div class="p-4">
-        <h2 class="text-xl font-semibold">Pedreiro</h2>
-      </div>
-    </a>
-    <!-- Bloco Faxineira -->
-    <a href="#" class="block bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-      <img src="https://atmosferaservicos.com.br/wp-content/uploads/2022/08/faxineira-3.png" alt="Faxineira" class="w-full h-48 object-cover">
-      <div class="p-4">
-        <h2 class="text-xl font-semibold">Faxineira</h2>
-      </div>
-    </a>
-    <!-- Bloco Eletricista -->
-    <a href="#" class="block bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-      <img src="https://escolaprofissional.com.br/wp-content/uploads/2024/01/eletricista-industrial-1-1024x683.jpg" alt="Eletricista" class="w-full h-48 object-cover">
-      <div class="p-4">
-        <h2 class="text-xl font-semibold">Eletricista</h2>
-      </div>
-    </a>
-    <!-- Bloco Encanador -->
-    <a href="#" class="block bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-      <img src="https://www.prestadoresdobrasil.com.br/Servicos/imagens_categorias_prestadores/Encanadores.jpg" alt="Encanador" class="w-full h-48 object-cover">
-      <div class="p-4">
-        <h2 class="text-xl font-semibold">Encanador</h2>
-      </div>
-    </a>
-    <!-- Bloco Técnico de Refrigeração -->
-    <a href="#" class="block bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-      <img src="https://www.formabrasil.com.br/uploads/images/bra_cursos/redimencionar-730-500-tecnico-em-refrigeracao-e-climatizacao_1.jpg" alt="Técnico de Refrigeração" class="w-full h-48 object-cover">
-      <div class="p-4">
-        <h2 class="text-xl font-semibold">Técnico de Refrigeração</h2>
-      </div>
-    </a>
-  </main>
+    <main class="flex-grow p-4">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold text-gray-800 text-center mb-10">Encontre o Profissional Ideal</h2>
 
-  <script>
-    // Script para toggle do menu dropdown
-    const menuButton = document.getElementById('menuButton');
-    const dropdownMenu = document.getElementById('dropdownMenu');
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <a href="#" class="card-profession group">
+                    <img src="https://via.placeholder.com/300x200/cccccc/ffffff?text=Pedreiro" alt="Pedreiro" class="w-full h-48 object-cover rounded-t-lg">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-800 group-hover:text-blue-600 transition-colors">Pedreiro</h3>
+                        <p class="text-gray-600 mt-2">Construção, reformas, alvenaria e reparos.</p>
+                    </div>
+                </a>
 
-    menuButton.addEventListener('click', () => {
-      dropdownMenu.classList.toggle('show');
-    });
+                <a href="#" class="card-profession group">
+                    <img src="https://via.placeholder.com/300x200/cccccc/ffffff?text=Faxineira" alt="Faxineira" class="w-full h-48 object-cover rounded-t-lg">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-800 group-hover:text-blue-600 transition-colors">Faxineira</h3>
+                        <p class="text-gray-600 mt-2">Limpeza residencial, comercial e pós-obra.</p>
+                    </div>
+                </a>
 
-    // Fechar o menu se clicar fora
-    document.addEventListener('click', (event) => {
-      if (!menuButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
-        dropdownMenu.classList.remove('show');
-      }
-    });
-  </script>
+                <a href="#" class="card-profession group">
+                    <img src="https://via.placeholder.com/300x200/cccccc/ffffff?text=Tecnico+Refrigeracao" alt="Técnico de Refrigeração" class="w-full h-48 object-cover rounded-t-lg">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-800 group-hover:text-blue-600 transition-colors">Técnico de Refrigeração</h3>
+                        <p class="text-gray-600 mt-2">Instalação e manutenção de ar condicionado e geladeiras.</p>
+                    </div>
+                </a>
+
+                <a href="#" class="card-profession group">
+                    <img src="https://via.placeholder.com/300x200/cccccc/ffffff?text=Encanador" alt="Encanador" class="w-full h-48 object-cover rounded-t-lg">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-800 group-hover:text-blue-600 transition-colors">Encanador</h3>
+                        <p class="text-gray-600 mt-2">Reparos hidráulicos, desentupimentos e instalações.</p>
+                    </div>
+                </a>
+
+                <a href="#" class="card-profession group">
+                    <img src="https://via.placeholder.com/300x200/cccccc/ffffff?text=Eletricista" alt="Eletricista" class="w-full h-48 object-cover rounded-t-lg">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-800 group-hover:text-blue-600 transition-colors">Eletricista</h3>
+                        <p class="text-gray-600 mt-2">Instalações elétricas, reparos e manutenção.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-white p-4 text-center text-sm mt-8">
+        <div class="container mx-auto">&copy; 2025 Freelancers. Todos os direitos reservados.</div>
+    </footer>
 </body>
 </html>

@@ -3,64 +3,199 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Cliente</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Cadastro de Cliente - Freelancers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Estilos para o label-field */
+        .label-field {
+            @apply block text-left text-gray-700 text-sm font-bold mb-2;
+        }
+
+        /* Estilos para o input-field */
+        .input-field {
+            @apply w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500;
+        }
+
+        /* Estilos para o btn-primary (Cadastrar) - VERDE */
+        .btn-primary {
+            @apply bg-green-500 text-white p-3 rounded-md hover:bg-green-600 transition duration-300 ease-in-out;
+        }
+
+        /* Estilos para o btn-secondary (Voltar) - AZUL */
+        .btn-secondary {
+            @apply bg-blue-600 text-white p-3 rounded-md hover:bg-blue-700 transition duration-300 ease-in-out;
+        }
+
+        /* Oculta o overlay do menu mobile por padrão */
+        #mobile-menu-overlay {
+            display: none;
+        }
+
+        /* Exibe o overlay do menu mobile quando a classe 'open' é adicionada */
+        #mobile-menu-overlay.open {
+            display: flex;
+            flex-direction: column;
+            position: fixed; /* Garante que o menu cubra a tela toda */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9); /* Fundo escuro semi-transparente */
+            z-index: 1000; /* Garante que fique acima de todo o conteúdo */
+            justify-content: center;
+            align-items: center;
+            animation: slideIn 0.3s forwards; /* Animação para entrada */
+        }
+
+        /* Animação de entrada do menu mobile */
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%); /* Começa fora da tela à direita */
+            }
+            to {
+                transform: translateX(0); /* Desliza para a posição normal */
+            }
+        }
+
+        /* Animação de saída do menu mobile */
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(100%);
+            }
+        }
+
+        #mobile-menu-overlay.closing {
+            animation: slideOut 0.3s forwards;
+        }
+
+        /* Estilos dos links dentro do menu mobile */
+        #mobile-menu-overlay .nav-links-mobile a {
+            @apply text-white text-2xl py-4 hover:text-blue-400 transition-colors duration-200;
+        }
+    </style>
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
-    <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
-        <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Cadastro de Cliente</h2>
-        <p class="text-gray-600 mb-8 text-center">Preencha os campos abaixo para criar sua conta de cliente.</p>
+<body class="font-sans bg-gray-100 flex flex-col min-h-screen">
+    <header class="bg-gray-900 text-white p-4 shadow-md">
+  <div class="container mx-auto flex justify-between items-center">
+    <h1 class="text-2xl sm:text-3xl font-bold uppercase">Freelancers</h1>
 
-        <form id="clientRegistrationForm" class="space-y-4">
-            <div>
-                <label for="fullName" class="block text-gray-700 text-sm font-bold mb-2">Nome Completo:</label>
-                <input type="text" id="fullName" name="fullName" placeholder="Seu nome completo"
-                       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
-            </div>
+    <!-- Menu Desktop -->
+    <nav class="hidden md:flex space-x-4 items-center">
+      <a href="index.html" class="btn-secondary">Login</a>
+    </nav>
 
-            <div>
-                <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
-                <input type="email" id="email" name="email" placeholder="seu.email@exemplo.com"
-                       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
-            </div>
+    <!-- Botão Menu Mobile -->
+    <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+           xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+  </div>
 
-            <div>
-                <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Senha:</label>
-                <input type="password" id="password" name="password" placeholder="Sua senha"
-                       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" required>
-            </div>
+  <!-- Menu Mobile -->
+  <div id="mobile-menu-overlay" class="md:hidden hidden flex-col items-center bg-gray-900 w-full">
+    <a href="index.html" class="btn-secondary my-2">Login</a>
+  </div>
+</header>
 
-            <div>
-                <label for="confirmPassword" class="block text-gray-700 text-sm font-bold mb-2">Confirmar Senha:</label>
-                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirme sua senha"
-                       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" required>
-            </div>
+<script>
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
 
-            <div>
-                <label for="address" class="block text-gray-700 text-sm font-bold mb-2">Endereço:</label>
-                <input type="text" id="address" name="address" placeholder="Rua, Número, Bairro, Cidade, Estado"
-                       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
-            </div>
+  mobileMenuButton.addEventListener('click', () => {
+    mobileMenuOverlay.classList.toggle('hidden');
+  });
+</script>
 
-            <div>
-                <label for="phone" class="block text-gray-700 text-sm font-bold mb-2">Telefone:</label>
-                <input type="tel" id="phone" name="phone" placeholder="(XX) XXXXX-XXXX"
-                       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-            </div>
 
-            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-md shadow-md transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 mt-6">
-                Cadastrar
-            </button>
-
-            <button type="button" id="backButton" class="w-full bg-gray-400 hover:bg-gray-500 text-white font-semibold py-3 px-6 rounded-md shadow-md transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-opacity-75 mt-2">
-                <a href="index.html">Voltar</a>
-            </button>
-        </form>
-
-        <div id="message" class="message mt-8 p-4 rounded-md hidden"></div>
+    <div id="mobile-menu-overlay" class="md:hidden">
+        <button id="close-mobile-menu" class="absolute top-4 right-4 text-white text-4xl focus:outline-none">
+            &times;
+        </button>
+        <nav class="nav-links-mobile flex flex-col items-center">
+            <a href="index.html" class="btn-secondary my-2">Login</a>
+        </nav>
     </div>
 
-    <script src="script.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <main class="flex-grow flex items-center justify-center p-4">
+        <div class="bg-white p-8 rounded-lg shadow-xl w-full max-w-lg">
+            <h2 class="text-4xl font-bold text-gray-800 mb-6 text-center">Cadastro de Cliente</h2>
+            <p class="text-gray-600 mb-8 text-center">Preencha os campos abaixo para criar sua conta de cliente.</p>
+
+            <form id="clientRegistrationForm" class="space-y-6">
+                <div>
+                    <label for="clientFullName" class="label-field">Nome Completo:</label>
+                    <input type="text" id="clientFullName" name="fullName" placeholder="Seu nome completo"
+                           class="input-field" required>
+                </div>
+                <div>
+                    <label for="clientEmail" class="label-field">Email:</label>
+                    <input type="email" id="clientEmail" name="email" placeholder="seu.email@exemplo.com"
+                           class="input-field" required>
+                </div>
+                <div>
+                    <label for="clientPassword" class="label-field">Senha:</label>
+                    <input type="password" id="clientPassword" name="password" placeholder="Sua senha"
+                           class="input-field" required>
+                </div>
+                <div>
+                    <label for="clientConfirmPassword" class="label-field">Confirmar Senha:</label>
+                    <input type="password" id="clientConfirmPassword" name="confirmPassword" placeholder="Confirme sua senha"
+                           class="input-field" required>
+                </div>
+                <div>
+                    <label for="clientAddress" class="label-field">Endereço:</label>
+                    <input type="text" id="clientAddress" name="address" placeholder="Rua, Número, Bairro, Cidade, Estado"
+                           class="input-field" required>
+                </div>
+                <div>
+                    <label for="clientPhone" class="label-field">Telefone:</label>
+                    <input type="tel" id="clientPhone" name="phone" placeholder="(XX) XXXXX-XXXX"
+                           class="input-field">
+                </div>
+
+                <div class="flex flex-col sm:flex-row justify-between gap-4 mt-8">
+                    <button type="submit" class="bg-green-500 text-white p-3 rounded-md hover:bg-green-600 transition duration-300 ease-in-out w-full text-center">Cadastrar</button>
+                    <a href="index.html" class="bg-blue-500 text-white p-3 rounded-md hover:bg-blue-600 transition duration-300 ease-in-out w-full text-center">Voltar</a>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-white p-4 text-center text-sm mt-8">
+        <div class="container mx-auto">&copy; 2025 Freelancers. Todos os direitos reservados.</div>
+    </footer>
+
+    <script>
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+        const closeMobileMenu = document.getElementById('close-mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenuOverlay.classList.add('open');
+        });
+
+        closeMobileMenu.addEventListener('click', () => {
+            mobileMenuOverlay.classList.add('closing');
+            mobileMenuOverlay.addEventListener('animationend', () => {
+                mobileMenuOverlay.classList.remove('open', 'closing');
+            }, { once: true });
+        });
+
+        // Fechar o menu ao clicar em um link
+        mobileMenuOverlay.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuOverlay.classList.add('closing');
+                mobileMenuOverlay.addEventListener('animationend', () => {
+                    mobileMenuOverlay.classList.remove('open', 'closing');
+                }, { once: true });
+            });
+        });
+    </script>
 </body>
 </html>

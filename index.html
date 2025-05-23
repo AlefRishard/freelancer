@@ -3,79 +3,181 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de Login - FLENGSS</title>
+    <title>Freelancers - Login</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body {
-            background-color: #000000; /* Matches the black background of the logo */
+        /* Estilos base para campos de input */
+        .input-field {
+            @apply w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500;
         }
-        .login-container {
-            background-color: #1a1a1a; /* Dark gray for contrast, similar to a tech theme */
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+
+        /* Estilos para os botões de cadastro (verde) */
+        .btn-green-cadastro {
+            @apply bg-green-500 text-white p-3 rounded-md hover:bg-green-600 transition duration-300 ease-in-out w-full block text-center;
         }
-        .btn.primary-btn {
-            background-color: #00AEEF; /* Matches the logo's blue color */
-            transition: background-color 0.2s;
+
+        /* Estilos para o botão "Login" (azul) - serve como "Voltar" visualmente */
+        .btn-blue-voltar {
+            @apply bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700 transition duration-300 ease-in-out px-4;
         }
-        .btn.primary-btn:hover {
-            background-color: #008BCF; /* Slightly darker blue for hover effect */
+
+        /* Oculta o overlay do menu mobile por padrão */
+        #mobile-menu-overlay {
+            display: none;
         }
-        .btn.secondary-btn {
-            background-color: #333333; /* Darker gray for secondary button */
-            color: #ffffff;
-            transition: background-color 0.2s;
+
+        /* Exibe o overlay do menu mobile quando a classe 'open' é adicionada */
+        #mobile-menu-overlay.open {
+            display: flex;
+            flex-direction: column;
+            position: fixed; /* Garante que o menu cubra a tela toda */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9); /* Fundo escuro semi-transparente */
+            z-index: 1000; /* Garante que fique acima de todo o conteúdo */
+            justify-content: center;
+            align-items: center;
+            animation: slideIn 0.3s forwards; /* Animação para entrada */
         }
-        .btn.secondary-btn:hover {
-            background-color: #444444; /* Slightly lighter gray for hover */
+
+        /* Animação de entrada do menu mobile */
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%); /* Começa fora da tela à direita */
+            }
+            to {
+                transform: translateX(0); /* Desliza para a posição normal */
+            }
         }
-        .forgot-password {
-            color: #00AEEF; /* Matches the logo's blue */
+
+        /* Animação de saída do menu mobile (opcional, para um fechamento mais suave) */
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(100%);
+            }
         }
-        .forgot-password:hover {
-            text-decoration: underline;
+
+        #mobile-menu-overlay.closing {
+            animation: slideOut 0.3s forwards;
         }
-        input, label {
-            color: #ffffff; /* White text for contrast on dark background */
-        }
-        input {
-            background-color: #2a2a2a; /* Dark input background */
-            border-color: #444444; /* Subtle border */
-        }
-        input:focus {
-            outline: none;
-            border-color: #00AEEF; /* Blue focus ring to match logo */
-            box-shadow: 0 0 0 2px rgba(0, 174, 239, 0.3);
+
+        /* Estilos dos links dentro do menu mobile */
+        #mobile-menu-overlay .nav-links-mobile a {
+            @apply text-white text-2xl py-4 hover:text-blue-400 transition-colors duration-200;
         }
     </style>
 </head>
-<body class="font-sans">
-    <header class="bg-black text-white p-4 flex justify-between items-center">
-        <div class="flex items-center">
-            <img src="./img/unnamed.png" alt="FLENGSS Logo" class="h-10 mr-2">
-            <h1 class="text-2xl font-bold uppercase">FLENGSS</h1>
+<body class="font-sans bg-gray-100 flex flex-col min-h-screen">
+    <header class="bg-gray-900 text-white p-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-3xl font-bold uppercase">Freelancers</h1>
+            <nav class="hidden md:flex space-x-4 items-center">
+                <a href="index.html" class="btn-blue-voltar">Login</a>
+                <a href="cliente.html" class="text-white hover:text-blue-400 transition-colors duration-200">Cadastre-se como Cliente</a>
+                <a href="prof.html" class="text-white hover:text-blue-400 transition-colors duration-200">Cadastre-se como Profissional</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
         </div>
     </header>
 
-    <div class="login-container max-w-md mx-auto mt-10 p-6">
-        <img src="./img/unnamed.png" alt="FLENGSS Logo" class="h-12 mx-auto mb-4">
-        <h2 class="text-2xl font-bold text-center text-white uppercase">Login</h2>
-        <form action="" method="POST">
-            <div class="input-group mb-4">
-                <label for="username" class="block text-sm font-medium">Usuário:</label>
-                <input type="text" id="username" name="username" required class="w-full p-2 border rounded">
-            </div>
-            <div class="input-group mb-4">
-                <label for="password" class="block text-sm font-medium">Senha:</label>
-                <input type="password" id="password" name="password" required class="w-full p-2 border rounded">
-            </div>
-            <button type="submit" class="btn primary-btn w-full p-2 text-white rounded">Acessar</button>
-            <a href="#" class="forgot-password block text-center text-sm mt-2" id="forgotPassword">Esqueci minha senha</a>
-            <button type="button" class="btn secondary-btn w-full p-2 mt-2"><a href="cads.html" class="text-white no-underline">Cadastre-se</a></button>
-        </form>
-        <div id="message" class="message mt-4 text-center text-sm text-red-500">
-        </div>
+    <div id="mobile-menu-overlay" class="md:hidden">
+        <button id="close-mobile-menu" class="absolute top-4 right-4 text-white text-4xl focus:outline-none">
+            &times;
+        </button>
+        <nav class="nav-links-mobile flex flex-col items-center">
+            <a href="index.html" class="btn-blue-voltar my-2">Login</a>
+            <a href="cliente.html" class="text-white hover:text-blue-400 mx-2">Cadastre-se como Cliente</a>
+            <a href="prof.html" class="text-white hover:text-blue-400 mx-2">Cadastre-se como Profissional</a>
+        </nav>
     </div>
+
+    <main class="flex-grow flex items-center justify-center p-4">
+    <div class="bg-white p-8 rounded-lg shadow-xl w-full max-w-md text-center">
+        <h2 class="text-4xl font-bold text-gray-800 mb-6">Bem-vindo(a)!</h2>
+        <p class="text-gray-600 mb-8">Encontre o profissional certo ou ofereça seus serviços.</p>
+
+        <form class="space-y-6">
+            <div>
+                <label for="loginEmail" class="sr-only">Email:</label>
+                <input type="email" id="loginEmail" name="email" placeholder="Seu email"
+                       class="input-field">
+            </div>
+            <div>
+                 <label for="loginPassword" class="sr-only">Senha:</label>
+    <input type="password" id="loginPassword" name="password" placeholder="Sua senha"
+           class="input-field">
+                <p class="text-left mt-2">
+                    <a href="recuperar-senha.html" class="text-blue-600 hover:underline text-sm">Esqueceu a senha?</a>
+                </p>
+            </div>
+            <button type="submit" class="bg-blue-500 text-white p-3 rounded-md hover:bg-green-600 transition duration-300 ease-in-out w-full">Entrar</button>
+        </form>
+
+        
+    </div>
+</main>
+    <footer class="bg-gray-900 text-white p-4 text-center text-sm mt-8">
+        <div class="container mx-auto">&copy; 2025 Freelancers. Todos os direitos reservados.</div>
+    </footer>
+
+   <script>
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+    const closeMobileMenu = document.getElementById('close-mobile-menu');
+
+    mobileMenuButton.addEventListener('click', () => {
+        mobileMenuOverlay.classList.add('open');
+    });
+
+    closeMobileMenu.addEventListener('click', () => {
+        mobileMenuOverlay.classList.remove('open');
+    });
+
+    mobileMenuOverlay.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenuOverlay.classList.remove('open');
+        });
+    });
+
+    // Lógica de login simulada com usuário admin
+    document.querySelector('form').addEventListener('submit', function(e) {
+        e.preventDefault(); // Impede envio padrão do formulário
+
+        const email = document.getElementById('loginEmail').value.trim();
+        const password = document.getElementById('loginPassword').value.trim();
+
+        if (email === '' || password === '') {
+            alert('Por favor, preencha todos os campos.');
+            return;
+        }
+
+        // "Banco de dados" simulado com usuários
+        const userDB = [
+            { email: 'cliente@email.com', senha: '123456', destino: 'cliente.html' },
+            { email: 'profissional@email.com', senha: 'abcdef', destino: 'prof.html' },
+            { email: 'admin@freelancers.com', senha: 'admin123', destino: 'menu.html' } // usuário admin
+        ];
+
+        const usuarioValido = userDB.find(user => user.email === email && user.senha === password);
+
+        if (usuarioValido) {
+            // Redireciona para a página correspondente ao tipo de usuário
+            window.location.href = usuarioValido.destino;
+        } else {
+            alert('Email ou senha incorretos.');
+        }
+    });
+</script>
+
 
 </body>
 </html>

@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #fffafa;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,17 +9,17 @@ body {
 }
 
 .login-container {
-    background-color: #fff;
+    background-color: #fdf5f5;
     padding: 30px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgb(0, 0, 0);
     width: 350px;
     text-align: center;
 }
 
 h2 {
     margin-bottom: 25px;
-    color: #333;
+    color: #000000;
 }
 
 .input-group {

@@ -3,10 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Escolha de Cadastro</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Página de Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #f0f0f0; /* Um cinza claro para o fundo da página */
+            display: flex; /* Habilita o flexbox */
+            justify-content: center; /* Centraliza horizontalmente */
+            align-items: center; /* Centraliza verticalmente */
+            min-height: 100vh; /* Garante que o body ocupe a altura total da viewport */
+            margin: 0; /* Remove margens padrão do body */
+        }
+        .login-container { /* Renomeado para .card-container, já que é o formulário de cadastro */
+            background-color: #ffffff;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra mais suave */
+            padding: 2rem; /* Espaçamento interno */
+            max-width: 400px; /* Largura máxima para o formulário */
+            width: 100%; /* Ocupa toda a largura disponível até o max-width */
+        }
+        .btn.primary-btn {
+            background-color: #0207ff;
+            transition: background-color 0.2s;
+        }
+        .btn.primary-btn:hover {
+            background-color: #001aff;
+        }
+        .btn.secondary-btn {
+            background-color: #00a31b;
+            color: #ffffff; /* Cor do texto branco para melhor contraste */
+            transition: background-color 0.2s;
+        }
+        .btn.secondary-btn:hover {
+            background-color: #000000;
+        }
+        .forgot-password {
+            color: #00AEEF;
+        }
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+        input, label {
+            color: #000000;
+        }
+        input {
+            background-color: #fcfcfc;
+            border-color: #000000;
+        }
+        input:focus {
+            outline: none;
+            border-color: #ee0707;
+            box-shadow: 0 0 0 2px rgba(238, 7, 7, 0.3); /* Ajuste a cor da sombra para combinar com a borda de foco */
+        }
+    </style>
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+<body class="font-sans">
+    <header class="bg-black text-white p-4 flex justify-between items-center fixed top-0 w-full z-10">
+        <div class="flex items-center">
+            <h1 class="text-2xl font-bold uppercase">Freelancers</h1>
+        </div>
+    </header>
     <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full text-center">
         <h2 class="text-3xl font-bold text-gray-800 mb-6">Escolha o Tipo de Cadastro</h2>
         <p class="text-gray-600 mb-8">Por favor, selecione se você é um cliente ou um profissional para prosseguir com o cadastro.</p>
@@ -17,7 +73,7 @@
             </button>
 
             <button id="professionalRegisterBtn" class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-md shadow-md transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-75">
-                <a href="prof.html">Cadastrar como Profissional,</a>
+                <a href="prof.html">Cadastrar como Profissional</a>
             </button>
         </div>
 
