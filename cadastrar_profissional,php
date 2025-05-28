@@ -1,0 +1,53 @@
+<?php
+session_start();
+require 'db.php'; // conexão com MySQL
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Dados do formulário
+    $nome       = $_POST['fullName'] ?? '';
+    $email      = $_POST['email'] ?? '';
+    $senha      = $_POST['password'] ?? '';
+    $confirmar  = $_POST['confirmPassword'] ?? '';
+    $endereco   = $_POST['address'] ?? '';
+    $telefone   = $_POST['phone'] ?? '';
+    $profissao  = $_POST['profession'] ?? '';
+    $experiencia= $_POST['experience'] ?? 0;
+    $portfolio  = $_POST['portfolio'] ?? '';
+
+    // Verifica se senha confere
+    if ($senha !== $confirmar) {
+        die("Erro: As senhas não coincidem.");
+    }
+
+    // Upload do certificado (opcional)
+    $certificado = '';
+    if (!empty($_FILES['certificate']['name'])) {
+        $nomeArquivo = uniqid() . '-' . basename($_FILES["certificate"]["name"]);
+        $caminho = "uploads/" . $nomeArquivo;
+        if (move_uploaded_file($_FILES["certificate"]["tmp_name"], $caminho)) {
+            $certificado = $caminho;
+        }
+    }
+
+    // Criptografar a senha
+    $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
+
+    // Inserir no banco
+    $stmt = $conn->prepare("INSERT INTO profissionais 
+        (nome, email, senha, endereco, telefone, profissao, experiencia, portfolio, certificado) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssssssiss", $nome, $email, $senhaHash, $endereco, $telefone, $profissao, $experiencia, $portfolio, $certificado);
+
+    if ($stmt->execute()) {
+        $_SESSION['user_id'] = $stmt->insert_id;
+        $_SESSION['email'] = $email;
+        $_SESSION['tipo'] = 'profissional';
+        header("Location: prof.html"); // redireciona para página do profissional
+        exit;
+    } else {
+        echo "Erro ao cadastrar: " . $conn->error;
+    }
+
+    $stmt->close();
+}
+?>

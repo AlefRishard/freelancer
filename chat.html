@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chat - Freelancers</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex flex-col min-h-screen font-sans">
+
+  <!-- Cabeçalho -->
+  <header class="bg-gray-900 text-white py-4 shadow-md w-full">
+    <div class="max-w-screen-xl mx-auto px-4 flex justify-between items-center">
+      <h1 class="text-xl font-bold uppercase" id="tituloChat">Chat</h1>
+      <a href="index.html" class="text-sm hover:text-blue-400 transition">← Voltar</a>
+    </div>
+  </header>
+
+  <!-- Conteúdo principal do chat -->
+  <main class="flex-grow p-4">
+    <div class="max-w-screen-md mx-auto bg-white shadow-md rounded-lg overflow-hidden flex flex-col h-[80vh]">
+      
+      <!-- Área de mensagens -->
+      <div id="chatBox" class="flex-1 p-4 overflow-y-auto space-y-4">
+        <!-- As mensagens aparecem aqui -->
+      </div>
+
+      <!-- Formulário de envio -->
+      <form id="chatForm" class="flex items-center gap-2 border-t p-3">
+        <input type="text" id="mensagem" placeholder="Digite uma mensagem..." class="flex-1 px-4 py-2 border rounded" />
+        <input type="file" id="arquivo" accept="image/*,audio/*,video/*" class="hidden" />
+        <button type="button" onclick="document.getElementById('arquivo').click()" title="Enviar mídia">📎</button>
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Enviar</button>
+      </form>
+    </div>
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="bg-gray-900 text-white py-2 text-center text-sm mt-auto w-full">
+    <div>&copy; 2025 Freelancers</div>
+  </footer>
+
+  <script src="chat.js"></script>
+</body>
+</html>
